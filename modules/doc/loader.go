@@ -34,13 +34,13 @@ func loadDocFiles() error {
 		return err
 	}
 
-	files, err := ioutil.ReadDir("website-docs/" + referenceLanguage)
+	files, err := ioutil.ReadDir("docs/" + referenceLanguage)
 	if err != nil {
 		return err
 	}
 
 	for _, file := range files {
-		data, err := ioutil.ReadFile("website-docs/" + referenceLanguage + "/" + file.Name())
+		data, err := ioutil.ReadFile("docs/" + referenceLanguage + "/" + file.Name())
 		if err != nil {
 			return err
 		}
@@ -96,7 +96,7 @@ func loadHeader(b []byte) rawFile {
 }
 
 func loadLanguagesAvailable() ([]string, error) {
-	files, err := ioutil.ReadDir("website-docs")
+	files, err := ioutil.ReadDir("docs")
 	if err != nil {
 		return nil, err
 	}
@@ -116,7 +116,7 @@ func loadLanguages(langs []string, fname string, referenceMD5 string) (map[strin
 	m := make(map[string]File, len(langs))
 
 	for _, lang := range langs {
-		data, err := ioutil.ReadFile("website-docs/" + lang + "/" + fname)
+		data, err := ioutil.ReadFile("docs/" + lang + "/" + fname)
 		if err != nil {
 			if os.IsNotExist(err) {
 				continue
@@ -129,7 +129,7 @@ func loadLanguages(langs []string, fname string, referenceMD5 string) (map[strin
 		m[lang] = File{
 			IsUpdated:      lang == referenceLanguage || header.ReferenceVersion == referenceMD5,
 			Title:          header.Title,
-			referencesFile: "website-docs/" + lang + "/" + fname,
+			referencesFile: "docs/" + lang + "/" + fname,
 		}
 	}
 
