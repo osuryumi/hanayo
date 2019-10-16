@@ -1,6 +1,6 @@
 {{/*###
 Handler=/donate
-TitleBar=Support Ripple
+TitleBar=Support Minase
 KyutGrill=donate2.png
 AdditionalJS=https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/9.0.0/nouislider.min.js
 */}}
@@ -32,16 +32,16 @@ AdditionalJS=https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/9.0.0/nouislider.
 			</div>
 			<div class="ui segment">
 				<h3 class="ui header no top margin">
-					<i class="money icon"></i><div class="content">{{ $.T "Ripple is not cheap to run." }}</div>
+					<i class="money icon"></i><div class="content">{{ $.T "Minase is not cheap to run." }}</div>
 				</h3>
 				<blockquote>
-					{{ $.T "While we provide this service for free, we still have to pay for it, and if we always took the money out of our own pockets, 1. we would be broke, 2. we wouldn't be able to upgrade our hardware to accomodate our users. While we do have loads of software optimisations that allow us to have Ripple run crazy fast while still being on not so high-end hardware, the more users we have, the higher-end our hardware needs to be. So we are asking you for help on this :)." }}
+					{{ $.T "While we provide this service for free, we still have to pay for it, and if we always took the money out of our own pockets, 1. we would be broke, 2. we wouldn't be able to upgrade our hardware to accomodate our users. While we do have loads of software optimisations that allow us to have Minase run crazy fast while still being on not so high-end hardware, the more users we have, the higher-end our hardware needs to be. So we are asking you for help on this :)." }}
 				</blockquote>
 				<h3 class="ui header">
 					<i class="book icon"></i><div class="content">{{ $.T "We are still students." }}</div>
 				</h3>
 				<blockquote>
-					{{ $.T "Ripple developers, and most of the Ripple staff, do not have a day job. This means that we get most of our income as students from doing small jobs as \"freelancers\" every so often, or, you know, allowance." }}
+					{{ $.T "Minase developers, and most of the Minase staff, do not have a day job. This means that we get most of our income as students from doing small jobs as \"freelancers\" every so often, or, you know, allowance." }}
 				</blockquote>
 				<h3 class="ui header">
 					<i class="mouse pointer icon"></i><div class="content">{{ $.T "We do not have ads. And never will." }}</div>
@@ -127,7 +127,7 @@ AdditionalJS=https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/9.0.0/nouislider.
 								<input type="hidden" name="option_select{{ . }}" value="{{ $months }} month{{ if . }}s{{ end }}">
 								<input type="hidden" name="option_amount{{ . }}" value="{{ calculateDonorPrice $months }}">
 							{{ end }}
-							<input type="hidden" name="on1" value="Ripple user to give donor">
+							<input type="hidden" name="on1" value="Minase user to give donor">
 							<input type="hidden" name="custom" value="username={{ $global.User.Username }}" id="ipn-username">
 							<input type="hidden" name="amount" value="{{ calculateDonorPrice 1 }}" id="paypal-amt">
 							<div class="ui fluid labeled action input">

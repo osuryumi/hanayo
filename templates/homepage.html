@@ -20,20 +20,17 @@ KyutGrill=homepage2.jpg
 	{{/* Not logged in block */}}
 	{{ if not .Context.User.ID }}
 		<div class="ui segment">
-			<h1 class="ui header">{{ .T "Welcome to Ripple." }}</h1>
+			<h1 class="ui header">{{ .T "Welcome to Minase." }}</h1>
 			<p>
-				{{ .T "You look new here. Allow us to introduce you to what Ripple is." }}
+				{{ .T "You look new here. Allow us to introduce you to what Minase is." }}
 			</p>
-			<p>
-				{{ .T "Ripple is a private osu! server, featuring multiplayer, PP, a very active community and a development team going strong implementing new features and squashing bugs. <a href='/about'>You can check out even more features here.</a> It has also a very friendly community, and it's <a href='https://zxq.co/ripple/ripple'>open source!</a> Just so you know, <b>we currently have %s users online and %s registered users!</b>" (rediget "ripple:online_users") (rediget "ripple:registered_users") | html }}
-			</p>
-			<h3 class="ui header center aligned">{{ .T "What are you waiting for? Join Ripple! It's risk-free: you won't get your account banned on the official server if you play on Ripple.<br>You can also switch anytime between the official osu! server and Ripple!" | html }}</h3>
+			<h3 class="ui header center aligned">{{ .T "What are you waiting for? Join Minase! It's risk-free: you won't get your account banned on the official server if you play on Minase.<br>You can also switch anytime between the official osu! server and Minase!" | html }}</h3>
 		</div>
 	{{ else }}
 		<div class="ui segment">
 			<h1 class="ui header">{{ .T "Howdy, %s!" .Context.User.Username }}</h1>
 			<p>
-				{{ .T "Welcome back to Ripple. We currently have <b>%s online users and %s total registered users.</b> Nice day to farm a few maps, isn't it?" (rediget "ripple:online_users") (rediget "ripple:registered_users") | html }}
+				{{ .T "Welcome back to Minase. We currently have <b>%s online users and %s total registered users.</b> Nice day to farm a few maps, isn't it?" (rediget "ripple:online_users") (rediget "ripple:registered_users") | html }}
 			</p>
 		</div>
 	{{ end }}
