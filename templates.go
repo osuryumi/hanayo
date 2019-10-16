@@ -181,7 +181,7 @@ func (b baseTemplateData) Get(s string, params ...interface{}) map[string]interf
 		b.Gin.Error(err)
 		return nil
 	}
-	req.Header.Set("User-Agent", "hanayo")
+	req.Header.Set("User-Agent", "minase")
 	req.Header.Set("H-Key", config.APISecret)
 	req.Header.Set("X-Ripple-Token", b.Context.Token)
 	resp, err := http.DefaultClient.Do(req)

@@ -399,7 +399,7 @@ msgstr ""
 msgid "Your account is currently in restricted mode. You will not be able to do certain actions, and your profile can only be seen by you and by Ripple's staff. If you believe we have mistaken putting you in restricted mode, or a month has passed since you first saw this, then you can send an appeal at <a href='https://support.ripple.moe'>support.ripple.moe</a>."
 msgstr ""
 
-msgid "&copy; 2015-%d Ripple, using Hanayo %s."
+msgid "&copy; 2015-%d Ripple, using minase %s."
 msgstr ""
 
 msgid "Team"
@@ -582,7 +582,7 @@ msgstr ""
 msgid "This is the changelog. Changes are published here as soon as they hit the production status (as in, live on the website)."
 msgstr ""
 
-msgid "For various reasons, some software of Ripple does not contribute to the changelog, to which this website is a part of. In case you want to see the changelog of Hanayo, you can do so by <a href=\"https://github.com/osu-minase/frontend/commits/master\">clicking here</a>."
+msgid "For various reasons, some software of Ripple does not contribute to the changelog, to which this website is a part of. In case you want to see the changelog of minase, you can do so by <a href=\"https://github.com/osu-minase/frontend/commits/master\">clicking here</a>."
 msgstr ""
 
 msgid "Author"

@@ -41,7 +41,7 @@ var (
 // After that, the key is requested from coinbase, and the account ID is found
 // if not already saved in Redis.
 func Get() string {
-	v := Redis.Get("hanayo:btcaddress").Val()
+	v := Redis.Get("minase:btcaddress").Val()
 	if v != "" {
 		return v
 	}
@@ -55,7 +55,7 @@ func Get() string {
 		return DefaultAddress
 	}
 
-	Redis.Set("hanayo:btcaddress", a, time.Minute*30)
+	Redis.Set("minase:btcaddress", a, time.Minute*30)
 
 	return a
 }

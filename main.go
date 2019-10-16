@@ -27,7 +27,6 @@ import (
 	"github.com/thehowl/qsql"
 	"gopkg.in/mailgun/mailgun-go.v1"
 	"gopkg.in/redis.v5"
-	"zxq.co/ripple/agplwarning"
 	"zxq.co/ripple/schiavolib"
 	"zxq.co/x/rs"
 )
@@ -98,19 +97,12 @@ var (
 )
 
 func main() {
-	err := agplwarning.Warn("ripple", "Hanayo")
-	if err != nil {
-		fmt.Println(err)
-	}
-
-	fmt.Println("hanayo " + version)
-
-	err = conf.Load(&config, "hanayo.conf")
+	err := conf.Load(&config, "config.conf")
 	switch err {
 	case nil:
 		// carry on
 	case conf.ErrNoFile:
-		conf.Export(config, "hanayo.conf")
+		_ = conf.Export(config, "config.conf")
 		fmt.Println("The configuration file was not found. We created one for you.")
 		return
 	default:
@@ -145,9 +137,6 @@ func main() {
 		panic(err)
 	}
 	qb = qsql.New(db.DB)
-	if err != nil {
-		panic(err)
-	}
 
 	// initialise mailgun
 	mg = mailgun.NewMailgun(
@@ -182,8 +171,8 @@ func main() {
 	btcaddress.APISecret = config.CoinbaseAPISecret
 
 	// initialise schiavo
-	schiavo.Prefix = "hanayo"
-	schiavo.Bunker.Send(fmt.Sprintf("STARTUATO, mode: %s", gin.Mode()))
+	schiavo.Prefix = "minase"
+	_ = schiavo.Bunker.Send(fmt.Sprintf("STARTUATO, mode: %s", gin.Mode()))
 
 	// even if it's not release, we say that it's release
 	// so that gin doesn't spam
@@ -209,7 +198,7 @@ func main() {
 
 	fmt.Println("Exporting configuration...")
 
-	conf.Export(config, "hanayo.conf")
+	_ = conf.Export(config, "minase.conf")
 
 	fmt.Println("Intialisation:", time.Since(startTime))
 
@@ -331,7 +320,3 @@ func generateEngine() *gin.Engine {
 
 	return r
 }
-
-const alwaysRespondText = `Ooops! Looks like something went really wrong while trying to process your request.
-Perhaps report this to a Ripple developer?
-Retrying doing again what you were trying to do might work, too.`

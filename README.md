@@ -1,10 +1,10 @@
-# osu-hanayo
+# osu-minase
 
-This repository has a mirror [here](https://github.com/osuripple/hanayo). The original repo is still [here](https://github.com/osu-minase/frontend).
+This repository has a mirror [here](https://github.com/osuripple/minase). The original repo is still [here](https://github.com/osu-minase/frontend).
 
 ## To fellow developers: this is not how you do it!
 
-The biggest flaw of hanayo are that when I set out to create it, I wanted to create a template system that:
+The biggest flaw of minase are that when I set out to create it, I wanted to create a template system that:
 
 * Created a handler by simply having the file "be there"
 * Could fetch the data it needed on its own, often from the Ripple API

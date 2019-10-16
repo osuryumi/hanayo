@@ -268,9 +268,9 @@ var funcMap = template.FuncMap{
 		}
 		return nil
 	},
-	// unixNano returns the UNIX timestamp of when hanayo was started in nanoseconds.
+	// unixNano returns the UNIX timestamp of when minase was started in nanoseconds.
 	"unixNano": func() string {
-		return strconv.FormatInt(hanayoStarted, 10)
+		return strconv.FormatInt(minaseStarted, 10)
 	},
 	// playstyle returns the string representation of a playstyle.
 	"playstyle": func(i float64, f *profileData) string {
@@ -442,7 +442,7 @@ var funcMap = template.FuncMap{
 		}
 		return ieUnfucker
 	},
-	// version gets what's the current Hanayo version.
+	// version gets what's the current minase version.
 	"version": func() string {
 		return version
 	},
@@ -479,7 +479,7 @@ var funcMap = template.FuncMap{
 		return langInfo{}
 	},
 	"countryList": func(n int64) []string {
-		return rd.ZRevRange("hanayo:country_list", 0, n-1).Val()
+		return rd.ZRevRange("minase:country_list", 0, n-1).Val()
 	},
 	"documentationFiles": doc.GetDocs,
 	"documentationData": func(slug string, language string) doc.File {
@@ -499,7 +499,7 @@ var funcMap = template.FuncMap{
 
 var localeLanguages = []string{"de", "pl", "it", "es", "ru", "fr", "nl", "ro", "fi", "sv", "vi", "ko"}
 
-var hanayoStarted = time.Now().UnixNano()
+var minaseStarted = time.Now().UnixNano()
 
 var servicePrefixes = map[string]string{
 	"github":  "https://github.com/",

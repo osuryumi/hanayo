@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Translate Toolkit 2.0.0\n"
-"X-Pootle-Path: /vi/Hanayo/templates-vi.po\n"
+"X-Pootle-Path: /vi/minase/templates-vi.po\n"
 "X-Pootle-Revision: 8349\n"
 
 # General
@@ -593,8 +593,8 @@ msgstr ""
 "thì bạn có thể gửi đơn kháng cáo tại <a "
 "href='https://support.ripple.moe'>support.ripple.moe</a>."
 
-msgid "&copy; 2015-%d Ripple, using Hanayo %s."
-msgstr "&copy; 2015-%d Ripple, đang sử dụng Hanayo %s."
+msgid "&copy; 2015-%d Ripple, using minase %s."
+msgstr "&copy; 2015-%d Ripple, đang sử dụng minase %s."
 
 msgid "Team"
 msgstr "Đội ngũ"
@@ -803,7 +803,7 @@ msgstr ""
 msgid ""
 "For various reasons, some software of Ripple does not contribute to the "
 "changelog, to which this website is a part of. In case you want to see the "
-"changelog of Hanayo, you can do so by <a href=\""
+"changelog of minase, you can do so by <a href=\""
 "https://github.com/osu-minase/frontend/commits/master\">clicking here</a>."
 msgstr ""
 

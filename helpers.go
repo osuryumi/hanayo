@@ -169,9 +169,9 @@ func mustCSRFGenerate(u int) string {
 var blogRedirectMap = map[string]string{
 	"/posts/moving-to-a-new-server":                                              "https://blog.ripple.moe/moving-to-a-new-server-11155949edca",
 	"/posts/ripple-qa-3":                                                         "https://blog.ripple.moe/ripple-q-a-3-28c9851f42b3",
-	"/posts/hanayo-is-now-the-ripple-website":                                    "https://blog.ripple.moe/hanayo-is-now-the-ripple-website-3bcfaab60c4f",
+	"/posts/minase-is-now-the-ripple-website":                                    "https://blog.ripple.moe/minase-is-now-the-ripple-website-3bcfaab60c4f",
 	"/posts/ripple-qa-2":                                                         "https://blog.ripple.moe/ripple-q-a-2-1204be5ffeef",
-	"/posts/hanayo-is-live":                                                      "https://blog.ripple.moe/hanayo-is-live-still-not-replacing-the-official-site-f2b751a5baf7",
+	"/posts/minase-is-live":                                                      "https://blog.ripple.moe/minase-is-live-still-not-replacing-the-official-site-f2b751a5baf7",
 	"/posts/ripple-qa-1":                                                         "https://blog.ripple.moe/ripple-q-a-1-51181dd8df65",
 	"/posts/why-am-i-randomly-gaining-losing-pp":                                 "https://blog.ripple.moe/why-am-i-randomly-gaining-losing-pp-595aedfdc5db",
 	"/posts/more-love-for-donors":                                                "https://blog.ripple.moe/more-love-for-donors-96c889a9d95f",

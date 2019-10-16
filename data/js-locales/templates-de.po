@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Translate Toolkit 2.0.0\n"
-"X-Pootle-Path: /de/HanayoJS/templates-de.po\n"
+"X-Pootle-Path: /de/minaseJS/templates-de.po\n"
 "X-Pootle-Revision: 6077\n"
 
 # JavaScript
