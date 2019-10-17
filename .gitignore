@@ -1,6 +1,5 @@
 node_modules
-minase
-minase.conf
+config.conf
 team.json
 static/profbackgrounds/*
 !static/profbackgrounds/.keep
@@ -9,3 +8,4 @@ semantic/gulpfile.tmp.*.js
 static/oauth-apps/*
 !static/oauth-apps/.keep
 .idea
+frontend-server

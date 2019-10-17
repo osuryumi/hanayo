@@ -198,7 +198,7 @@ func main() {
 
 	fmt.Println("Exporting configuration...")
 
-	_ = conf.Export(config, "minase.conf")
+	_ = conf.Export(config, "config.conf")
 
 	fmt.Println("Intialisation:", time.Since(startTime))
 
