@@ -11,20 +11,20 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Translate Toolkit 2.0.0\n"
-"X-Pootle-Path: /fr/minaseJS/templates-fr.po\n"
+"X-Pootle-Path: /fr/HanayoJS/templates-fr.po\n"
 "X-Pootle-Revision: 6997\n"
 
 # JavaScript
 msgid ""
-"An error occurred while contacting the Minase API. Please report this to a "
-"Minase developer."
+"An error occurred while contacting the Ripple API. Please report this to a "
+"Ripple developer."
 msgstr ""
-"Une erreur s'est produite lors de la mise en contact de l'API de Minase. "
-"Veuillez signaler ceci à un développeur de Minase."
+"Une erreur s'est produite lors de la mise en contact de l'API de Ripple. "
+"Veuillez signaler ceci à un développeur de Ripple."
 
 # This is a quote of UNDERTALE if you didn't know.
 # It is shown regarding the level of an user, but it is shortened to "Lv.".
-# Of course, this means Level on Minase, but in UNDERTALE, it actually means LOVE.
+# Of course, this means Level on Ripple, but in UNDERTALE, it actually means LOVE.
 # I'm not gonna spoil you why it's called LOVE.
 # It's hard to keep this cultural reference, so you can also just write the
 # translation for "Level" in this.

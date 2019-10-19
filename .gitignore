@@ -9,3 +9,4 @@ static/oauth-apps/*
 !static/oauth-apps/.keep
 .idea
 frontend-server
+vendor

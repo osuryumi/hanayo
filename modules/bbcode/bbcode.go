@@ -1,4 +1,4 @@
-// Package bbcode implements BBCode compiling for minase.
+// Package bbcode implements BBCode compiling for Hanayo.
 package bbcode
 
 import (
