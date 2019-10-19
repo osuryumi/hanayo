@@ -150,7 +150,7 @@ var singlePageSnippets = {
   "/register/verify" : function() {
     var qu = query("u");
     setInterval(function() {
-      $.getJSON(minaseConf.banchoAPI + "/api/v1/verifiedStatus?u=" + qu,
+      $.getJSON(hanayoConf.banchoAPI + "/api/v1/verifiedStatus?u=" + qu,
         function(data) {
           if (data.result >= 0) {
             window.location.href = "/register/welcome?u=" + qu;
@@ -447,7 +447,7 @@ $(document)
               r.results.push({
                 title : item.username,
                 url : "/u/" + item.id,
-                image : minaseConf.avatars + "/" + item.id,
+                image : hanayoConf.avatars + "/" + item.id,
               });
             });
             return r;
@@ -516,7 +516,7 @@ function api(endpoint, data, success, failure, post) {
   $.ajax({
     method : (post ? "POST" : "GET"),
     dataType : "json",
-    url : minaseConf.baseAPI + "/api/v1/" + endpoint,
+    url : hanayoConf.baseAPI + "/api/v1/" + endpoint,
     data : (post ? JSON.stringify(data) : data),
     contentType : (post ? "application/json; charset=utf-8" : ""),
     success : function(data) {
@@ -756,19 +756,19 @@ i18next.use(i18nextXHRBackend).init({
   nsSeparator : false,
   keySeparator : false,
   fallbackLng : false,
-  lng : minaseConf.language,
+  lng : hanayoConf.language,
   whitelist : langWhitelist,
   load : "currentOnly",
   backend : {loadPath : "/static/locale/{{lng}}.json"}
 });
 
-var i18nLoaded = $.inArray(minaseConf.language, langWhitelist) === -1;
+var i18nLoaded = $.inArray(hanayoConf.language, langWhitelist) === -1;
 i18next.on("loaded", function() { i18nLoaded = true });
 
 function T(s, settings) {
   if (typeof settings !== "undefined" &&
       typeof settings.count !== "undefined" &&
-      $.inArray(minaseConf.language, langWhitelist) === -1 &&
+      $.inArray(hanayoConf.language, langWhitelist) === -1 &&
       settings.count !== 1)
     s = keyPlurals[s];
   return i18next.t(s, settings);
