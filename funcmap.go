@@ -21,10 +21,10 @@ import (
 	"github.com/thehowl/qsql"
 	"golang.org/x/oauth2"
 	"zxq.co/ripple/go-discord-oauth"
-	"github.com/osu-minase/frontend/modules/bbcode"
-	"github.com/osu-minase/frontend/modules/btcaddress"
-	"github.com/osu-minase/frontend/modules/doc"
-	"github.com/osu-minase/frontend/modules/fa-semantic-mappings"
+	"github.com/osuYozora/hanayo/modules/bbcode"
+	"github.com/osuYozora/hanayo/modules/btcaddress"
+	"github.com/osuYozora/hanayo/modules/doc"
+	"github.com/osuYozora/hanayo/modules/fa-semantic-mappings"
 	"zxq.co/ripple/playstyle"
 	"zxq.co/ripple/rippleapi/common"
 )
@@ -268,9 +268,9 @@ var funcMap = template.FuncMap{
 		}
 		return nil
 	},
-	// unixNano returns the UNIX timestamp of when minase was started in nanoseconds.
+	// unixNano returns the UNIX timestamp of when hanayo was started in nanoseconds.
 	"unixNano": func() string {
-		return strconv.FormatInt(minaseStarted, 10)
+		return strconv.FormatInt(hanayoStarted, 10)
 	},
 	// playstyle returns the string representation of a playstyle.
 	"playstyle": func(i float64, f *profileData) string {
@@ -442,7 +442,7 @@ var funcMap = template.FuncMap{
 		}
 		return ieUnfucker
 	},
-	// version gets what's the current minase version.
+	// version gets what's the current Hanayo version.
 	"version": func() string {
 		return version
 	},
@@ -479,7 +479,7 @@ var funcMap = template.FuncMap{
 		return langInfo{}
 	},
 	"countryList": func(n int64) []string {
-		return rd.ZRevRange("minase:country_list", 0, n-1).Val()
+		return rd.ZRevRange("hanayo:country_list", 0, n-1).Val()
 	},
 	"documentationFiles": doc.GetDocs,
 	"documentationData": func(slug string, language string) doc.File {
@@ -492,14 +492,11 @@ var funcMap = template.FuncMap{
 		return common.Privileges(privs).String()
 	},
 	"htmlescaper": template.HTMLEscaper,
-	"hhmm": func(seconds float64) string {
-		return fmt.Sprintf("%02dh %02dm", int(math.Floor(seconds / 3600)), int(math.Floor(seconds / 60)) % 60)
-	},
 }
 
 var localeLanguages = []string{"de", "pl", "it", "es", "ru", "fr", "nl", "ro", "fi", "sv", "vi", "ko"}
 
-var minaseStarted = time.Now().UnixNano()
+var hanayoStarted = time.Now().UnixNano()
 
 var servicePrefixes = map[string]string{
 	"github":  "https://github.com/",

@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/osu-minase/frontend/modules/locale"
+	"github.com/osuYozora/hanayo/modules/locale"
 )
 
 // T translates a string into the language specified by the request.

@@ -804,7 +804,7 @@ msgid ""
 "For various reasons, some software of Ripple does not contribute to the "
 "changelog, to which this website is a part of. In case you want to see the "
 "changelog of Hanayo, you can do so by <a href=\""
-"https://zxq.co/ripple/hanayo/commits/master\">clicking here</a>."
+"https://github.com/osuYozora/hanayo/commits/master\">clicking here</a>."
 msgstr ""
 
 msgid "Author"
@@ -1537,12 +1537,6 @@ msgid ""
 "you trust."
 msgstr ""
 
-msgid "Access to Bancho"
-msgstr ""
-
-msgid "This application will be able to make you appear online ingame and use the chat."
-msgstr ""
-
 msgid "Approve"
 msgstr ""
 
@@ -1672,24 +1666,3 @@ msgstr "Gửi đơn khiếu nại về việc bị cấm hay bị hạn chế ho
 
 msgid "I have read and understood everything on this page."
 msgstr "Tôi đã đọc và hiểu mọi thứ trên trang này"
-
-msgid "The 'Ranking Criteria' are as follows:"
-msgstr ""
-
-msgid "Follow the <a href='https://osu.ppy.sh/help/wiki/Ranking_Criteria/'>Bancho Ranking Criteria</a> to some extend"
-msgstr ""
-
-msgid "No clear abuse of any systems (pp/stars)"
-msgstr ""
-
-msgid "No speedup or re-upload of existing maps"
-msgstr ""
-
-msgid "No Jump/Stream Training Compilations"
-msgstr ""
-
-msgid "At least 66% Completion for 7+ Minute songs, anything else completely mapped"
-msgstr ""
-
-msgid "Popularity does not mean rankable"
-msgstr ""

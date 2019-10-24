@@ -12,6 +12,18 @@
 			{{ if after .silence_info.end }}
 				<div class="ui error centered message">{{ $global.T "User is <b>silenced</b> for %s, expires %s." (.silence_info.reason | htmlescaper) (time .silence_info.end) | html }}</div>
 			{{ end }}
+
+			{{ $sarah  := has .id 1193 }}
+			{{ $alicia  := has .id 1000 }}
+			{{ $catherine  := has .id 999 }}
+			
+			{{ $super := has .privileges 7340031 }}
+			{{ $dev  := has .privileges 11534335 }}
+			{{ $donor := has .privileges 7 }}
+			{{ $admin  := has .privileges 3049983 }}
+			{{ $chatmod  := has .privileges 786763 }}
+			{{ $bn  := has .privileges 267 }}
+
 			{{ if hasAdmin $global.Context.User.Privileges }}
 				{{ $restr := not (has .privileges 1) }}
 				{{ $disab := not (has .privileges 2) }}
@@ -50,7 +62,29 @@
 					</div>
 					<div class="table element">
 						<h1 class="ui header">
+							{{ $user := . }}
+							
+							{{ if $super }}
+							<div class="owner">
+							{{ if $user.clan.tag}}
+								<td class="right aligned"><a href="/c/{{ $user.clan.id }}?mode=0">[{{ $user.clan.tag }}]</a></td>
+							{{ end }}
+							
 							{{ .username }}
+							</div>
+							{{else if $donor}}
+							<div class="dev">
+							{{ if $user.clan.tag}}
+									<td class="right aligned"><a href="/c/{{ $user.clan.id }}?mode=0">[{{ $user.clan.tag }}]</a></td>
+							{{ end }}
+								{{ .username }}
+							</div>
+							{{ else }}
+							{{ if $user.clan.tag}}
+								<td class="right aligned"><a href="/c/{{ $user.clan.id }}?mode=0">[{{ $user.clan.tag }}]</a></td>
+							{{ end }}
+								{{ .username }}
+							{{ end }}
 						</h1>
 						{{ if .username_aka }}
 							<div class="subtitle">
@@ -83,7 +117,7 @@
 								</a>
 							{{ end }}
 							{{ if hasAdmin $global.Context.User.Privileges }}
-								<a href="https://old.ripple.moe/index.php?p=103&id={{ $global.UserID }}"
+								<a href="https://old.yozora.pw/index.php?p=103&id={{ $global.UserID }}"
 									target="_blank" title="Quick edit" class="ui circular mini blue icon button">
 									<i class="folder open outline icon"></i>
 								</a>
@@ -93,6 +127,11 @@
 				</div>
 			</div>
 			{{ $user := . }}
+			<div class="ui three item bottom attached menu" id="rx-menu">
+                <a class="0 item" data-rx="0" href="/u/{{ $user.id }}">Vanilla</a>
+                <a class="1 item" data-rx="1" href="/rx/u/{{ $user.id }}">Relax</a>
+                <a class="2 item" data-rx="2" href="/ap/u/{{ $user.id }}">AutoPilot</a>
+            </div>
 			<div class="ui four item bottom attached menu" id="mode-menu">
 				{{ range $k, $v := modes }}
 					<a class="{{ favMode $favouritemode $k }}item" data-mode="{{ $k }}" href="/u/{{ $user.id }}?mode={{ $k }}">{{ $v }}</a>
@@ -102,8 +141,35 @@
 				<div class="ui three column divided stackable grid">
 					<div class="row">
 						<div class="column">
-							{{ $global.T "<b>%s</b> is a Minase player from <b>%s</b>." .username (country .country true) | html }}
-							<br>{{ $global.T "They signed up on Minase %s." (time $user.registered_on) | html }}
+								{{if $super }}
+								{{ $global.T "<b >%s</b> " .username | html }}
+								 is an <i class="pink code small icon"></i><b>Owner</b> 
+								{{ $global.T " from <b>%s</b>." (country .country true) | html }}
+								{{else if $dev}}
+								{{ $global.T "<b>%s</b> " .username | html }}
+								 is a <i class="blue code small icon"></i><b>Developer</b> 
+								{{ $global.T " from <b>%s</b>." (country .country true) | html }}
+								{{else if $admin}}
+								{{ $global.T "<b>%s</b> " .username | html }}
+								 is an <i class="red lightning small icon"></i><b>Administrator</b> 
+								{{ $global.T " from <b>%s</b>." (country .country true) | html }}
+								{{else if $chatmod}}
+								{{ $global.T "<b>%s</b> " .username | html }}
+								 is a <i class="blue star small icon"></i><b>Chat Mod</b> 
+								{{ $global.T " from <b>%s</b>." (country .country true) | html }}
+								{{else if $bn}}
+								{{ $global.T "<b>%s</b> " .username | html }}
+								 is a <i class="orange universal access small icon"></i><b>Nominator</b> 
+								{{ $global.T " from <b>%s</b>." (country .country true) | html }}
+								{{else if $donor }}
+								{{ $global.T "<b>%s</b> " .username | html }}
+								 is a <i class="pink heart small icon"></i><b>Supporter</b> 
+								{{ $global.T " from <b>%s</b>." (country .country true) | html }}
+							{{ else }}
+								{{ $global.T "<b>%s</b> is a player from <b>%s</b>." .username (country .country true) | html }}
+							{{ end }}
+
+							<br>{{ $global.T "They signed up on Yozora %s." (time $user.registered_on) | html }}
 							<br>{{ $global.T "Last seen: %s." (time $user.latest_activity) | html }}
 							<br>{{ with playstyle .play_style $global }}{{ $global.T "They play with %s." . }}{{ end }}
 						</div>
@@ -161,17 +227,14 @@
 												<td class="right aligned">{{ humanize .playcount }}</td>
 											</tr>
 											<tr>
-												<td><b>{{ $global.T "Total Play Time" }}</b></td>
-												<td class="right aligned">{{ hhmm .play_time }}</td>
-											</tr>
-											<tr>
 												<td><b>{{ $global.T "Replays watched" }}</b></td>
 												<td class="right aligned">{{ humanize .replays_watched }}</td>
 											</tr>
 											<tr>
 												<td><b>{{ $global.T "Total hits" }}</b></td>
 												<td class="right aligned">{{ humanize .total_hits }}</td>
-											</tr>									<tr>
+											</tr>
+																				<tr>
 												<td><b>{{ $global.T "Accuracy" }}</b></td>
 												<td class="right aligned">{{ printf "%.2f" .accuracy }}%</td>
 											</tr>
@@ -196,16 +259,6 @@
 				{{ end }}
 			</div>
 
-			<div class="ui segment">
-				<h2 class="ui header">{{ $global.T "Achievements" }}</h2>
-				<div id="achievements" class="ui grid">
-				</div>
-				<div class="right aligned">
-					<button class="ui disabled button" id="load-more-achievements">
-						{{ $global.T "Load more" }}
-					</button>
-				</div>
-			</div>
 			<div class="ui modal">
 				<i class="close icon"></i>
 				<div class="content">

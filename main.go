@@ -17,16 +17,17 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jmoiron/sqlx"
 	"github.com/johnniedoe/contrib/gzip"
-	"github.com/osu-minase/frontend/modules/btcaddress"
-	"github.com/osu-minase/frontend/modules/btcconversions"
-	"github.com/osu-minase/frontend/routers/oauth"
-	"github.com/osu-minase/frontend/routers/pagemappings"
-	"github.com/osu-minase/frontend/services"
-	"github.com/osu-minase/frontend/services/cieca"
 	"github.com/thehowl/conf"
 	"github.com/thehowl/qsql"
 	"gopkg.in/mailgun/mailgun-go.v1"
 	"gopkg.in/redis.v5"
+	"zxq.co/ripple/agplwarning"
+	"github.com/osuYozora/hanayo/modules/btcaddress"
+	"github.com/osuYozora/hanayo/modules/btcconversions"
+	"github.com/osuYozora/hanayo/routers/oauth"
+	"github.com/osuYozora/hanayo/routers/pagemappings"
+	"github.com/osuYozora/hanayo/services"
+	"github.com/osuYozora/hanayo/services/cieca"
 	"zxq.co/ripple/schiavolib"
 	"zxq.co/x/rs"
 )
@@ -97,12 +98,19 @@ var (
 )
 
 func main() {
-	err := conf.Load(&config, "config.conf")
+	err := agplwarning.Warn("ripple", "Hanayo")
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	fmt.Println("hanayo " + version)
+
+	err = conf.Load(&config, "hanayo.conf")
 	switch err {
 	case nil:
 		// carry on
 	case conf.ErrNoFile:
-		_ = conf.Export(config, "config.conf")
+		conf.Export(config, "hanayo.conf")
 		fmt.Println("The configuration file was not found. We created one for you.")
 		return
 	default:
@@ -137,6 +145,9 @@ func main() {
 		panic(err)
 	}
 	qb = qsql.New(db.DB)
+	if err != nil {
+		panic(err)
+	}
 
 	// initialise mailgun
 	mg = mailgun.NewMailgun(
@@ -171,8 +182,8 @@ func main() {
 	btcaddress.APISecret = config.CoinbaseAPISecret
 
 	// initialise schiavo
-	schiavo.Prefix = "minase"
-	_ = schiavo.Bunker.Send(fmt.Sprintf("STARTUATO, mode: %s", gin.Mode()))
+	schiavo.Prefix = "hanayo"
+	schiavo.Bunker.Send(fmt.Sprintf("STARTUATO, mode: %s", gin.Mode()))
 
 	// even if it's not release, we say that it's release
 	// so that gin doesn't spam
@@ -198,7 +209,7 @@ func main() {
 
 	fmt.Println("Exporting configuration...")
 
-	_ = conf.Export(config, "config.conf")
+	conf.Export(config, "hanayo.conf")
 
 	fmt.Println("Intialisation:", time.Since(startTime))
 
@@ -267,7 +278,13 @@ func generateEngine() *gin.Engine {
 	r.GET("/register/verify", verifyAccount)
 	r.GET("/register/welcome", welcome)
 
+	r.GET("/clans/create", ccreate)
+	r.POST("/clans/create", ccreateSubmit)
+	r.GET("/c/:cid", clanPage)
+
 	r.GET("/u/:user", userProfile)
+	r.GET("/rx/u/:user", relaxProfile)
+	r.GET("/ap/u/:user", autoProfile)
 	r.GET("/b/:bid", beatmapInfo)
 
 	r.POST("/pwreset", passwordReset)
@@ -292,6 +309,8 @@ func generateEngine() *gin.Engine {
 	r.POST("/settings/2fa/totp", totpSetup)
 	r.GET("/settings/discord/finish", discordFinish)
 	r.POST("/settings/profbackground/:type", profBackground)
+	r.POST("/settings/clansettings", createInvite)
+	r.POST("settings/clansettings/k", clanKick)
 
 	r.POST("/dev/tokens/create", createAPIToken)
 	r.POST("/dev/tokens/delete", deleteAPIToken)
@@ -306,13 +325,11 @@ func generateEngine() *gin.Engine {
 	r.GET("/oauth/token", oauth.Token)
 	r.POST("/oauth/token", oauth.Token)
 
+	r.GET("/clans/invite/:inv", clanInvite)
+
 	r.GET("/donate/rates", btcconversions.GetRates)
 
 	r.Any("/blog/*url", blogRedirect)
-
-	r.GET("/help", func(c *gin.Context) {
-		c.Redirect(301, "https://support.ripple.moe")
-	})
 
 	loadSimplePages(r)
 
@@ -320,3 +337,7 @@ func generateEngine() *gin.Engine {
 
 	return r
 }
+
+const alwaysRespondText = `Ooops! Looks like something went really wrong while trying to process your request.
+Perhaps report this to a Ripple developer?
+Retrying doing again what you were trying to do might work, too.`

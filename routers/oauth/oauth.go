@@ -110,7 +110,6 @@ func Authorize(c *gin.Context) {
 var scopes = [...]string{
 	"read_confidential",
 	"write",
-	"bancho",
 }
 
 // safeScopes removes duplicates and invalid elements from the raw scopes

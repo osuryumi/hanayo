@@ -95,7 +95,7 @@ func startuato(engine *gin.Engine) bool {
 }
 
 func updateFromRemote(c *gin.Context) {
-	if c.Query("minasekey") != config.APISecret {
+	if c.Query("hanayokey") != config.APISecret {
 		c.String(403, "nope")
 		return
 	}

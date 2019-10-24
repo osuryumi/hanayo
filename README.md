@@ -1,10 +1,10 @@
-# osu-minase
+# Hanayo ![build status](https://ci.zxq.co/api/badges/ripple/hanayo/status.svg)
 
-This repository has a mirror [here](https://github.com/osuripple/minase). The original repo is still [here](https://github.com/osu-minase/frontend).
+This repository has a mirror [here](https://github.com/osuripple/hanayo). The original repo is still [here](https://github.com/osuYozora/hanayo).
 
 ## To fellow developers: this is not how you do it!
 
-The biggest flaw of minase are that when I set out to create it, I wanted to create a template system that:
+The biggest flaw of hanayo are that when I set out to create it, I wanted to create a template system that:
 
 * Created a handler by simply having the file "be there"
 * Could fetch the data it needed on its own, often from the Ripple API
@@ -23,4 +23,3 @@ The key concepts and insights for me where:
 
 But don't stop here. Actually making a project using Vue helps you to understand this much more easily than using mere words. Go ahead and build something, even if just to play around!
 
-and I'm going to use ppy/osu-web for the theme! yay!

@@ -8,30 +8,30 @@ KyutGrill=team2.jpg
 <div class="ui container">
 	<div class="ui segments">
 		<div class="ui center aligned segment">
-			<h3>{{ .T "This is a list of the wonderful people who keep Minase up and running and deal with its community." }}</h3>
+			<h3>{{ .T "This is a list of the wonderful people who keep Yozora up and running and deal with its community." }}</h3>
+		</div>
+		<div class="ui center aligned segment">
+			<h1 class="ui heading">{{ .T "Owners" }}</h1>
+			<p>
+				{{ .T "Alicia/Sarah are the owners that adds new features to the server, squash bugs, keep the server up and running and take care of its maintenance."}}
+				{{ .T "They try to listen to the community. You know it is us because we have a blue name in-game." }}
+			</p>
+			{{ template "userGroup" (.Get "badges/members?id=%d" 2) }}
 		</div>
 		<div class="ui center aligned segment">
 			<h1 class="ui heading">{{ .T "Community Managers" }}</h1>
 			<p>
 				{{ .T "Community Managers deal with bans, silences, name changes and pretty much everything that has to do with the community." }}<br>
-				{{ .T "They take care of our Discord server and reply to emails sent to the support services (email and support.ripple.moe). Community Managers have a red name in the in-game chat." | html }}
+				{{ .T "They take care of our Discord server and reply to emails sent to the support services (email and support@yozora.pw). Community Managers have a red name in the in-game chat." | html }}
 			</p>
-			{{ template "userGroup" (.Get "badges/members?id=%d" 4) }}
-		</div>
-		<div class="ui center aligned segment">
-			<h1 class="ui heading">{{ .T "Developers" }}</h1>
-			<p>
-				{{ .T "Developers add new features to the server, squash bugs, keep the server up and running and take care of its maintenance." }}<br>
-				{{ .T "They don't do anything related to the community. Developers have a blue name in the in-game chat." }}
-			</p>
-			{{ template "userGroup" (.Get "badges/members?id=%d" 2) }}
+			{{ template "userGroup" (.Get "badges/members?id=%d" 10) }}
 		</div>
 		<div class="ui center aligned segment">
 			<h1 class="ui heading">{{ .T "Chat Moderators" }}</h1>
 			<p>
 				{{ .T "Chat moderators manage the chat to make sure The Law&trade; (the rules) is respected." | html }}
 			</p>
-			{{ template "userGroup" (.Get "badges/members?id=%d" 30) }}
+			{{ template "userGroup" (.Get "badges/members?id=%d" 4) }}
 		</div>
 		<div class="ui center aligned segment">
 			<h1 class="ui heading">{{ .T "BATs" }}</h1>
@@ -44,7 +44,7 @@ KyutGrill=team2.jpg
 	<div class="ui segments">
 		<div class="ui center aligned segment">
 			<h1 class="ui heading">{{ .T "Special thanks" }}</h1>
-			<p>{{ .T "Here's a list of people who helped with Minase." }}</p>
+			<p>{{ .T "Here's a list of people who helped with Yozora." }}</p>
 		</div>
 		<div class="ui segment">
 			<ul class="ui list">
@@ -64,14 +64,16 @@ KyutGrill=team2.jpg
 					{{ .T "<b>jrosdahl</b>, for <a href='https://github.com/jrosdahl/miniircd'>miniircd</a>, used as a base for our IRC server." | html }}<br>
 					miniircd is licensed under GPL v2. Our implementation can be found <a href="https://zxq.co/ripple/pep.py/src/master/irc/ircserver.py">here</a>.
 				</li>
-				<li>{{ .T "<b>Avail</b>, for having hosted Minase on his server." | html }}</li>
-				<li>{{ .T "<b>Angela Guerra</b>, for designing the Minase logo." | html }}</li>
-				<li>{{ .T "<b><a id='everyone' class='clickable'>Everyone</a></b> who has supported the Minase project by donating or inviting other people." | html }}</li>
+				<li>
+					{{ .T "<b>Kotrik</b>, for helping out with some features." | html }}.
+				</li>
+				<li>{{ .T "<b>Jacksonisiah</b>, for designing the Yozora logo." | html }}</li>
+				<li>{{ .T "<b><a id='everyone' class='clickable'>Everyone</a></b> who has supported the Yozora project by donating or inviting other people." | html }}</li>
 			</ul>
 		</div>
 	</div>
 	{{ $ := . }}
-	{{ .T "Looking for how you should contact our team? Check out <a href='https://support.ripple.moe'>this page</a>." | html }}
+	{{ .T "Looking for how you should contact our team? Check out <a href='mailto:support@yozora.pw'>this email</a>." | html }}
 	<div class="ui modal">
 		<div class="header"><h2 class="ui header">{{ .T "They told me these are very cool people." }}</h2></div>
 		{{ with .Get "users?sort=donor_expire,desc&l=52" }}
@@ -88,7 +90,7 @@ KyutGrill=team2.jpg
 						</div>
 					{{ end }}
 				</div>
-				<!-- Probably most shit coded part of minase -->
+				<!-- Probably most shit coded part of Hanayo -->
 				<br>
 				<div class="centered">
 					<b>{{ $.T "And more..." }}</b><br><br>

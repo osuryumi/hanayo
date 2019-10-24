@@ -15,6 +15,8 @@ NoCompile=true
 		{{ navbarItem .Path (.T "Two Factor Authentication") "/settings/2fa" }}
 
 		{{ navbarItem .Path (.T "Authorized applications") "/settings/authorized_applications" }}
+		
+		{{ navbarItem .Path (.T "Clan Settings") "/settings/clansettings" }}
 
 		{{/* Stuff for donators */}}
 		{{ if has .Context.User.Privileges 4 }}

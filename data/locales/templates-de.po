@@ -846,12 +846,12 @@ msgid ""
 "For various reasons, some software of Ripple does not contribute to the "
 "changelog, to which this website is a part of. In case you want to see the "
 "changelog of Hanayo, you can do so by <a href=\""
-"https://zxq.co/ripple/hanayo/commits/master\">clicking here</a>."
+"https://github.com/osuYozora/hanayo/commits/master\">clicking here</a>."
 msgstr ""
 "Aus verschiedenen Gründen erscheint diverse Software von Ripple nicht im "
 "Änderungslog, welchem die Website angehört. Sofern du allerdings das Hanayo-"
 "änderungslog sehen möchtest, kannst du <a href=\""
-"https://zxq.co/ripple/hanayo/commits/master\">hier drauf drücken</a>"
+"https://github.com/osuYozora/hanayo/commits/master\">hier drauf drücken</a>"
 
 msgid "Author"
 msgstr "Autor"
@@ -1699,12 +1699,6 @@ msgstr ""
 "durchzuführen. Das ist potentiell sehr gefährlich! Benutze es also nur mit "
 "Anwendungen, denen du wirklich vertraust!"
 
-msgid "Access to Bancho"
-msgstr ""
-
-msgid "This application will be able to make you appear online ingame and use the chat."
-msgstr ""
-
 msgid "Approve"
 msgstr "Akzeptieren"
 
@@ -1929,24 +1923,3 @@ msgstr ""
 
 msgid "I have read and understood everything on this page."
 msgstr "Ich habe alles auf dieser Seite gelesen und verstanden."
-
-msgid "The 'Ranking Criteria' are as follows:"
-msgstr ""
-
-msgid "Follow the <a href='https://osu.ppy.sh/help/wiki/Ranking_Criteria/'>Bancho Ranking Criteria</a> to some extend"
-msgstr ""
-
-msgid "No clear abuse of any systems (pp/stars)"
-msgstr ""
-
-msgid "No speedup or re-upload of existing maps"
-msgstr ""
-
-msgid "No Jump/Stream Training Compilations"
-msgstr ""
-
-msgid "At least 66% Completion for 7+ Minute songs, anything else completely mapped"
-msgstr ""
-
-msgid "Popularity does not mean rankable"
-msgstr ""

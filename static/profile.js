@@ -27,7 +27,7 @@ $(document).ready(function() {
 		$(this).addClass("active");
 		window.history.replaceState('', document.title, wl.pathname + "?mode=" + m + wl.hash);
 	});
-	initialiseAchievements();
+	//initialiseAchievements();
 	initialiseFriends();
 	// load scores page for the current favourite mode
 	var i = function(){initialiseScores($("#scores-zone>div[data-mode=" + favouriteMode + "]"), favouriteMode)};
@@ -39,40 +39,7 @@ $(document).ready(function() {
 		});
 });
 
-function loadMostPlayedBeatmaps(mode) {
-	var mostPlayedTable = $("#scores-zone div[data-mode=" + mode + "] table[data-type='most-played']");
-	currentPage[mode].mostPlayed++
-	api('users/most_played', {id: userID, mode: mode, p: currentPage[mode].mostPlayed, l: 5}, function (resp) {
-		if (resp.beatmaps === null) {
-			return;
-		}
-		resp.beatmaps.forEach(function(el, idx) {
-			mostPlayedTable.children('tbody').append(
-				$("<tr />").append(
-					$("<td />").append(
-						$("<h4 class='ui image header' />").append(
-							$("<img src='https://assets.ppy.sh/beatmaps/" + el.beatmap.beatmapset_id + "/covers/list.jpg' class='ui mini rounded image'>"),
-							$("<div class='content' />").append(
-								$("<a href='/b/" + el.beatmap.beatmap_id + "' />").append(
-									$('<b />').text(el.beatmap.song_name),
-									// $('<i />').text(' by OwO')
-								)
-							)
-						)
-					),
-					$("<td class='right aligned' />").append(
-						$('<i class="play circle icon" />'),
-						$('<b />').text(el.playcount)
-					)
-				)
-			)
-		})
-		if (resp.beatmaps.length === 5) {
-			mostPlayedTable.find('.load-more').removeClass('disabled')
-		}
-	})
-}
-
+/*
 function initialiseAchievements() {
 	api('users/achievements' + (currentUserID == userID ? '?all' : ''),
 		{id: userID}, function (resp) {
@@ -135,7 +102,7 @@ function initialiseAchievements() {
 		displayAchievements(8, true);
 	});
 }
-
+*/
 function initialiseFriends() {
 	var b = $("#add-friend-button");
 	if (b.length == 0) return;
@@ -214,41 +181,15 @@ function initialiseScores(el, mode) {
 	el.attr("data-loaded", "1");
 	var best = defaultScoreTable.clone(true).addClass("orange");
 	var recent = defaultScoreTable.clone(true).addClass("blue");
-	var mostPlayedBeatmapsTable = $("<table class='ui table F-table yellow' data-mode='" + mode + "' />")
-			.append(
-					$("<thead />").append(
-							$("<tr />").append(
-									$("<th>"+ T("Beatmap") + "</th>"),
-									$("<th class='right aligned'>"+ T("Plays") + "</th>")
-							)
-					)
-			)
-			.append(
-					$('<tbody />')
-			)
-			.append(
-					$("<tfoot />").append(
-							$("<tr />").append(
-									$("<th colspan=2 />").append(
-											$("<div class='ui right floated pagination menu' />").append(
-													$("<a class='load-more disabled item'>" + T("Load more") + "</a>").click(loadMoreMostPlayed)
-											)
-									)
-							)
-					)
-			)
 	best.attr("data-type", "best");
 	recent.attr("data-type", "recent");
-	mostPlayedBeatmapsTable.attr("data-type", "most-played");
 	recent.addClass("no bottom margin");
 	el.append($("<div class='ui segments no bottom margin' />").append(
-		$("<div class='ui segment' />").append("<h2 class='ui header'>	" + T("Best scores") + "</h2>", best),
-		$("<div class='ui segment' />").append("<h2 class='ui header'>" + T("Most played beatmaps") + "</h2>", mostPlayedBeatmapsTable),
+		$("<div class='ui segment' />").append("<h2 class='ui header'>" + T("Best scores") + "</h2>", best),
 		$("<div class='ui segment' />").append("<h2 class='ui header'>" + T("Recent scores") + "</h2>", recent)
 	));
 	loadScoresPage("best", mode);
 	loadScoresPage("recent", mode);
-	loadMostPlayedBeatmaps(mode);
 };
 function loadMoreClick() {
 	var t = $(this);
@@ -259,20 +200,12 @@ function loadMoreClick() {
 	var mode = t.parents("div[data-mode]").data("mode");
 	loadScoresPage(type, mode);
 }
-function loadMoreMostPlayed() {
-	var t = $(this);
-	if (t.hasClass("disabled"))
-		return;
-	t.addClass("disabled");
-	var mode = t.parents("div[data-mode]").data("mode");
-	loadMostPlayedBeatmaps(mode);
-}
 // currentPage for each mode
 var currentPage = {
-	0: {best: 0, recent: 0, mostPlayed: 0},
-	1: {best: 0, recent: 0, mostPlayed: 0},
-	2: {best: 0, recent: 0, mostPlayed: 0},
-	3: {best: 0, recent: 0, mostPlayed: 0},
+	0: {best: 0, recent: 0},
+	1: {best: 0, recent: 0},
+	2: {best: 0, recent: 0},
+	3: {best: 0, recent: 0},
 };
 var scoreStore = {};
 function loadScoresPage(type, mode) {
@@ -283,11 +216,10 @@ function loadScoresPage(type, mode) {
 		type: type,
 		mode: mode,
 	});
-	var limit = type === 'best' ? 10 : 5;
 	api("users/scores/" + type, {
 		mode: mode,
 		p: page,
-		l: limit,
+		l: 20,
 		id: userID,
 	}, function(r) {
 		if (r.scores == null) {
@@ -296,15 +228,15 @@ function loadScoresPage(type, mode) {
 		}
 		r.scores.forEach(function(v, idx){
 			scoreStore[v.id] = v;
-			var scoreRank = getRank(mode, v.mods, v.accuracy, v.count_300, v.count_100, v.count_50, v.count_miss);
-			var scoreRankIcon = "<img src='/static/ranking-icons/" + scoreRank + ".svg' class='score rank' alt='" + scoreRank + "'> ";
-			var rowColor = '';
-			if (type === 'recent') {
-				rowColor = v.completed === 3 ? 'positive' : v.completed < 2 ? 'error' : '';
+			if (v.completed == 0){
+				var scoreRank = "failed";
+			}else{
+				var scoreRank = getRank(mode, v.mods, v.accuracy, v.count_300, v.count_100, v.count_50, v.count_miss);
 			}
-			table.append($("<tr class='new score-row " + rowColor + "' data-scoreid='" + v.id + "' />").append(
+		
+			table.append($("<tr class='new score-row' data-scoreid='" + v.id + "' />").append(
 				$(
-					"<td>" + (v.completed < 2 ? '' : scoreRankIcon) +
+					"<td><img src='/static/ranking-icons/" + scoreRank + ".png'  class='score rank' alt='" + scoreRank + "' height='16' width='16' > " +
 					escapeHTML(v.beatmap.song_name) + " <b>" + getScoreMods(v.mods) + "</b> <i>(" + v.accuracy.toFixed(2) + "%)</i><br />" +
 					"<div class='subtitle'><time class='new timeago' datetime='" + v.time + "'>" + v.time + "</time></div></td>"
 				),
@@ -317,7 +249,7 @@ function loadScoresPage(type, mode) {
 			e.stopPropagation();
 		}).removeClass("new");
 		var enable = true;
-		if (r.scores.length !== limit)
+		if (r.scores.length != 20)
 			enable = false;
 		disableLoadMoreButton(type, mode, enable);
 	});
@@ -356,8 +288,6 @@ function viewScoreInfo() {
 			count: Math.round(s.beatmap.difficulty2[modesShort[s.play_mode]]),
 	 }),
 		"Mods":				 getScoreMods(s.mods, true),
-		"Passed":			 T(s.completed >= 2 ? "Yes" : "No"),
-		"Personal high score": T(s.completed === 3 ? "Yes" : "No")
 	};
 
 	// hits data
