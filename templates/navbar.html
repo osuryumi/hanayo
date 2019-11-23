@@ -5,7 +5,7 @@
 <div class="ui secondary fixed-height stackable white background main menu no margin bottom{{ if .DisableHH }} dropped{{ end }}" id="navbar">
 	<div class="ui container">
 		<div class="item">
-			<b><a href="/" title="{{ .T "Home page" }}"><img class="ripple logo" src="/static/logos/text-{{ if $ds }}white{{ else }}black{{ end }}.png" alt="Yozora"></a></b>
+			<b><a href="/" title="{{ .T "Home page" }}"><img class="ripple logo" src="/static/logos/navbar.png" alt="Yozora"></a></b>
 		</div>
 		{{ if $isRAP }}
 			{{/*
@@ -27,17 +27,16 @@
 				<span>{{ .T "Help" }}</span>
 				<div class="menu">
 					{{ navbarItem .Path (.T "About") "/about" }}
-					{{ navbarItem .Path (.T "Server switcher") "/static/switcher.exe" }}
+					{{ navbarItem .Path (.T "Server switcher") "/static/RyumiSwitcher.exe" }}
 					<div class="divider"></div>
 					{{ navbarItem .Path (.T "Chat (Discord)") .Conf.DiscordServer }}
-					{{ navbarItem .Path (.T "Contact support") "/help" }}
+					{{ navbarItem .Path (.T "Source Code") "https://github.com/osu-minase" }}
 				</div>
 			</div>
 			{{ if .Context.User.Username }}
 			<div class="ui dropdown item">
 				<span>{{ .T "Beatmaps" }}</span>
 				<div class="menu">
-						{{ navbarItem .Path (.T "Listing") "/beatmaps" }}
 					{{ navbarItem .Path (.T "Request beatmap ranking") "/beatmaps/rank_request" }}
 				</div>
 			</div>
@@ -56,7 +55,7 @@
 			</div>
 			{{ end }}
 			{{ navbarItem .Path (.T "Donate" | printf "<i class=\"red heart icon\"></i>%s") "/donate" }}
-			{{ if $isAdmin }}{{ navbarItem .Path (.T "Admin" | printf "<b>%s</b>") "https://old.yozora.pw/p/100" }}{{ end }}
+			{{ if $isAdmin }}{{ navbarItem .Path (.T "Admin" | printf "<b>%s</b>") "https://old.ryumi.pw" }}{{ end }}
 		{{ end }}
 		<div class="firetrucking-right-menu">
 			<div class="item">

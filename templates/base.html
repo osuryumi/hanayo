@@ -5,15 +5,15 @@
 <!DOCTYPE html>
 <html>
 	<meta property="og:type" content="website" />
-	<meta property="og:site_name" content="osu!minase" />
-	<meta property="og:title" content="osu!minase" />
-	<meta property="og:description" content="Публичный osu! СНГ сервер!"/>
-	<meta property="og:image" content="https://test.kotypey.fun/static/logos/text-black.png" />
+	<meta property="og:site_name" content="osu!ryumi" />
+	<meta property="og:title" content="osu!ryumi" />
+	<meta property="og:description" content="osu! private server"/>
+	<meta property="og:image" content="https://ryumi.pw/static/logo.png" />
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<title>{{ if .TitleBar }}{{ .T .TitleBar }} - {{ end }}osu!minase</title>
+		<title>{{ if .TitleBar }}{{ .T .TitleBar }} - {{ end }} osu!ryumi</title>
 
 		<link rel="stylesheet" type="text/css" href="/static/{{ if $ds }}dark/{{ end }}semantic.min.css?{{ unixNano }}">
 		<link rel="stylesheet" type="text/css" href="/static/ripple.css?{{ unixNano }}">
@@ -98,23 +98,17 @@
 				<div class="row">
 					<div class="three wide column">
 						<div class="footer-info-block">
-							<a class="footer-title">Помощь</a> 
+							<a class="footer-title">Help</a> 
 							<ul style="list-style-type: none; padding: 0; margin: 0;">
 								<li>
-									<i><a href="https://github.com/osu-minase/switcher/releases/download/1.0.0/Switcher.exe">Свитчер</a></i>
-								</li>
-								<li>
-									<i><a href="/team">Команда</a></i>
-								</li>
-								<li>
-									<i><a href="/doc/connection_guide">Как зайти</a></i>
+									<i><a href="/static/RyumiSwitcher">Server Switcher</a></i>
 								</li>
 							</ul>
 						</div> 
 					</div>
 					<div class="three wide column">
 						<div class="footer-info-block">
-							<a class="footer-title">Соц сети.</a>
+							<a class="footer-title">Social</a>
 							<ul style="list-style-type: none; padding: 0; margin: 0;">
 								<li>
 									<i><a href="https://discord.gg/zPPDwcc" target="_blank">Discord</a></i>
@@ -124,18 +118,18 @@
 					</div>
 					<div class="seven wide column">
 						<div class="footer-info-block">
-							<a class="footer-title">Про нас</a>
+							<a class="footer-title">Source Code</a>
 							<ul style="list-style-type: none; padding: 0; margin: 0;">
 								<li>
-									<i><a href="https://github.com/osu-minase" target="_blank">Исходный код</a></i>
+									<i><a href="https://github.com/osu-minase" target="_blank">GitHub</a></i>
 								</li>
 							</ul>
 						</div>
 					</div>
 					<div class="footer-logo">
-						<span style="color: white; font-size: 30px;">osu!minase!</span> 
+						<span style="color: white; font-size: 30px;">osu!ryumi</span> 
 						<br>
-						<a class="subtitle" style="font-size: 15px; color: white;"> Публичный СНГ сервер.</a>
+						<a class="subtitle" style="font-size: 15px; color: white;">Private osu! server</a>
 					</div>
 				</div>
 			</div>

@@ -14,40 +14,75 @@ TitleBar=
 			<div class="status"></div>
 			<br>
 			<span class="text-lg">
-				osu!minase
+				osu!ryumi
 			</span>
 			<span class="text-sm">
-				<b>Добро пожаловать на osu!minase.</b>
+				<b>Welcome to osu!ryumi.</b>
 
 
-				Мы - публичный сервер osu! со своими плюшками. свой мультиплеер, своя PP система, разработчики трудятся каждый день что-бы зделать osu!minase лучше. если хотите поддержать тогда купите <a href="https://minase.tk/donate">minase!supporter</a>, и присоединяйтесь к нам на <a href="https://discord.gg/zPPDwcc">Дискорд сервер</a> что-бы быть в курсе что присходит на сервере
+				osu!ryumi is a private osu server with a custom website and other custom features such as leaderboards for Relax, Regular and Autopilot! Well what are you waiting for? Come join us! Registering can be accessed via the button below.
 			</span>
 			<br>
 			<br>
 			<br>
 			<div class="buttons">
-				<a href="/register" class="home-btn btn-key" >Присоединится</a>
-				<a href="/doc/connection_guide" class="home-btn btn-how" style="margin-left: 6px;">как зайти</a>
+				<a href="/register" class="home-btn btn-key" >Register</a>
+				<a href="/static/RyumiSwitcher.exe" class="home-btn btn-how" style="margin-left: 6px;">Server Switcher</a>
 			</div>
 		</div>
 	</div>
-	<div class="ui stackable four grid">
-	<div class="five wide column">
-		<div class="ui red segment">
-		<div class="ui grid">
-		<div class="four wide column">
-		<i class="adjust icon status-icon"></i>
-		</div>
-		<div class="twelve wide column">
-		<p class="status-head"> -1pp </p>
-		<p class="status-footer">Top score [osu!]</p>
-		<p class="status-head" style="font-size: 12px!important;">Done by <a href="/u/1337">Ktoto</a></p>
-		<p class="status-head" style="font-size: 10px!important;">on <a href="/b/1121834">BLEEEEEEK ROOOOOOVER</a></p>
-		</div>
-		</div>
-		</div>
-		</div>
-	</div>
 </div>
+</div>
+	{{/* Global Statistics */}}
+<div class="ui container">
+        <div class="ui stackable four grid">
+            <div class="five wide column">
+                <div class="ui blue segment">
+                    <div class="ui grid">
+                        <div class="four wide column">
+                            <i class="adjust icon status-icon"></i>
+                        </div>
+                        <div class="twelve wide column">
+			{{ $d := (qb "SELECT ROUND(pp) AS pp, users.username, users.id FROM scores INNER JOIN users ON scores.userid = users.id WHERE scores.play_mode = 0 AND completed = 3 AND users.privileges > 2 ORDER BY pp DESC LIMIT 1") }}
+                            <p class="status-head">{{ $d.pp }}pp</p>
+			    <p class="status-head">Done by <a href="/u/{{ $d.id }}">{{ $d.username }}</a></p>
+                            <p class="status-footer">Top Vanilla Score</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+	    <div class="six wide column">
+	       <div class="ui orange segment">
+	          <div class="ui grid">
+                     <div class="four wide column">
+                         <i class="adjust icon status-icon"></i>
+		     </div>
+                     <div class="twelve wide column">
+			{{ $d := (qb "SELECT ROUND(pp) AS pp, users.username, users.id FROM scores_relax INNER JOIN users ON scores_relax.userid = users.id WHERE scores_relax.play_mode = 0 AND completed = 3 AND users.privileges > 2 ORDER BY pp DESC LIMIT 1") }}
+                         <p class="status-head">{{ $d.pp }}pp</p>
+ 			 <p class="status-head">Done by <a href="/rx/u/{{ $d.id }}">{{ $d.username }}</a></p>
+			 <p class="status-footer">Top Relax Score</p>
+		     </div>
+	         </div>
+	     </div>
+	</div>
 
+            <div class="five wide column">
+                <div class="ui green segment">
+                    <div class="ui grid">
+                        <div class="four wide column">
+                            <i class="adjust icon status-icon"></i>
+                        </div>
+                        <div class="twelve wide column">
+                       {{ $d := (qb "SELECT ROUND(pp) AS pp, users.username, users.id FROM scores_auto INNER JOIN users ON scores_auto.userid = users.id WHERE scores_auto.play_mode = 0 AND completed = 3 AND users.privileges > 2 ORDER BY pp DESC LIMIT 1") }}
+                       <p class="status-head">{{ $d.pp }}pp</p>
+                       <p class="status-head">Done by <a href="/ap/u/{{ $d.id }}">{{ $d.username }}</a></p>
+                       <p class="status-footer">Top AutoPilot Score</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+ 
+	</div> {{/* Global Stats end past this /div */}}
+</div>
 {{ end }}
