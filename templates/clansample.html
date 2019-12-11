@@ -80,30 +80,30 @@ Include=members.html
                             </div>
                             <div class="column">
                             {{ if $global.Context.User.ID }}
-                                {{ $d := qb "SELECT user, clan, perms FROM user_clans WHERE user = ? LIMIT 1" .Context.User.ID }}
-                                {{ $p := qb "SELECT user, clan, perms FROM user_clans WHERE user = ? AND perms = 8 LIMIT 1" .Context.User.ID }}
-                                {{ $tc := qb "SELECT user, clan, perms FROM user_clans WHERE user = ? AND clan = ? LIMIT 1" .Context.User.ID .ClanID }}
-                                {{ $uc := or $d.clan.Int -1 }}
-                                    {{ if $d }}
-                                        {{ if $tc }}
-                                            {{ if $p }}
-                                                <form id="register-form" class="ui form" method="post" action="/c/{{ .ClanID }}/test">
-                                                    {{ ieForm .Gin }}
-                                                </form>
-                                                <div class="ui one item menu"><button tabindex="1" class="ui primary button" style="background-color:rgba(255,0,0,.5)" type="submit" form="register-form">{{ .T "Disband Clan" }}</button></div>
-                                            {{ else }}
-                                                <form id="register-form" class="ui form" method="post" action="/c/{{ .ClanID }}">
-                                                    {{ ieForm .Gin }}
-                                                </form>
-                                                <div class="ui one item menu"><button tabindex="1" class="ui primary button" style="background-color:rgba(255,0,0,.3)" type="submit" form="register-form">{{ .T "Leave Clan" }}</button></div>
-                                            {{ end }}
-                                        {{ else }}
-                                            <div class="ui one item menu" id="join-menu"><a class="item" style="background-color:rgba(255,0,0,.3)">Already joined a clan</a></div>
-                                        {{end}}
-                                    {{ else }}
-    
-                                    {{ end }}
-                            {{ else }}
+							{{ $d := qb "SELECT user, clan, perms FROM user_clans WHERE user = ? LIMIT 1" .Context.User.ID }}
+							{{ $p := qb "SELECT user, clan, perms FROM user_clans WHERE user = ? AND perms = 8 LIMIT 1" .Context.User.ID }}
+							{{ $tc := qb "SELECT user, clan, perms FROM user_clans WHERE user = ? AND clan = ? LIMIT 1" .Context.User.ID .ClanID }}
+							{{ $uc := or $d.clan.Int -1 }}
+								{{ if $d }}
+									{{ if $tc }}
+										{{ if $p }}
+											<form id="register-form" class="ui form" method="post" action="/c/{{ .ClanID }}">
+												{{ ieForm .Gin }}
+											</form>
+											<div class="ui one item menu"><button tabindex="1" class="ui primary button" style="background-color:rgba(255,0,0,.5)" type="submit" form="register-form">{{ .T "Disband Clan" }}</button></div>
+										{{ else }}
+											<form id="register-form" class="ui form" method="post" action="/c/{{ .ClanID }}">
+												{{ ieForm .Gin }}
+											</form>
+											<div class="ui one item menu"><button tabindex="1" class="ui primary button" style="background-color:rgba(255,0,0,.3)" type="submit" form="register-form">{{ .T "Leave Clan" }}</button></div>
+										{{ end }}
+									{{ else }}
+										<div class="ui one item menu" id="join-menu"><a class="item" style="background-color:rgba(255,0,0,.3)">Already joined a clan</a></div>
+									{{end}}
+								{{ else }}
+
+								{{ end }}
+						{{ else }}
                             <div class="ui one item menu" id="join-menu"><a class="item" href="/login" style="background-color:rgba(0,128,255,.3)">Please login to join a clan</a></div>
                             
                             {{ end }}
